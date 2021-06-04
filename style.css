@@ -6,15 +6,21 @@
   box-sizing: border-box;
 }
 
-body{
-font-family: 'Source Sans Pro', sans-serif;
-background-color: #FEC8D8
+input{
+  width:100%
 }
-container{
+input:focus{
+  background-color: #909090
+}
+
+.container{
   align-items: center;
+  width: 75%;
   margin: auto;
-  padding: auto;
 }
-form-control button {
-  width: 100%;
+h2{
+  text-align:center
+}
+label{
+  color: #DC143C;
 }
