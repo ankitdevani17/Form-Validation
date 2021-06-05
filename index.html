@@ -21,7 +21,7 @@
   <form class="form" action="index.html" method="post">
     <div class="form-control">
         <label for="">Username</label>
-        <input type="text" name="" value="" id="FN" placeholder="Full Name" autocomplete="off">
+        <input type="text" name="" value="" id="username" placeholder="Full Name" autocomplete="off">
         <i class="fas fa-check-circle"></i>
         <i class="fas fa-exclamation-circle"></i>
         <small>Error!</small>
@@ -36,21 +36,21 @@
     </div>
     <div class="form-control">
         <label for="">Mobile Number</label>
-        <input type="number" name="" value="" id="MN" placeholder="Mobile Number" autocomplete="off">
+        <input type="number" name="" value="" id="phone" placeholder="Mobile Number" autocomplete="off">
         <i class="fas fa-check-circle"></i>
         <i class="fas fa-exclamation-circle"></i>
         <small>Error!</small>
     </div>
     <div class="form-control">
         <label for="">Password</label>
-        <input type="password" name="" value="" id="Pass" placeholder="Enter Password" autocomplete="off">
+        <input type="password" name="" value="" id="password" placeholder="Enter Password" autocomplete="off">
         <i class="fas fa-check-circle"></i>
         <i class="fas fa-exclamation-circle"></i>
         <small>Error!</small>
     </div>
     <div class="form-control">
         <label for="">Confirm Password</label>
-        <input type="password" name="" value="" id="CPass" placeholder="Enter Password Again" autocomplete="off">
+        <input type="password" name="" value="" id="cpassword" placeholder="Enter Password Again" autocomplete="off">
         <i class="fas fa-check-circle"></i>
         <i class="fas fa-exclamation-circle"></i>
         <small>Error!</small>
@@ -58,13 +58,66 @@
     <input type="submit" class="button"> </input>
   </form>
   </div>
-  <script type="text/javascript">
+<script type="text/javascript" >
   const form = document.getElementById('form')
-  const name = document.getElementById('FN')
+  const username = document.getElementById('username')
   const email = document.getElementById('email')
-  const mobile = document.getElementById('MN')
-  const password = document.getElementById('Pass')
-  const cpassword = document.getElementById('Cpass')
+  const phone = document.getElementById('phone')
+  const password = document.getElementById('password')
+  const cpassword = document.getElementById('cpassword')
+    window.onload=function(){
+    form.addEventListener('submit', (event));
+    event.preventDefault();
+    validate();
+  }
+
+  const isemail = (emailval) =>{
+    var at=emailval.IndexOf("@")
+    if(at<1){
+      return false;
+    }
+    var dot = emailval.lastIndexOf(".")
+    if(dot <=at+2){
+      return false;
+    }
+    else if(dot === emailval.length - 1){
+      return false;
+    }
+    return true;
+  }
+
+  const validate = () => {
+    const usernameval =username.value.trim();
+    const emailval = email.value.trim();
+    const phoneval = phone.value.trim();
+    const passwordval = password.value.trim();
+    const cpasswordval =cpassword.value.trim();
+
+    if(usernameval === ""){
+      setErrormsg(username, "Username cannnot be blank")
+    }
+    else if(usernameval.length<=2){
+        setErrormsg(username, "Username should be of minimum 3 characters")
+    }
+    else{
+      setSuccessmsg(username);
+    }
+    if(emailval === ""){
+      setErrormsg(email, "Username cannnot be blank")
+    }
+    else if(!isemail(emailval)){
+        setErrormsg(email, "Not a valid email")
+    }
+    else{
+      setSuccessmsg(email);
+    }
+    function setErrormsg (input,errormsg){
+      const formcontrol = input.parentElement;
+      const small = formcontrol.querySelector('small');
+      formcontrol.className = "form-control error";
+      small.innerText = errormsg;
+    }
+  }
   </script>
 </body>
 </html>
